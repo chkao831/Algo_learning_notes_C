@@ -67,3 +67,37 @@ public:
 #### Complexity:
 - Time: O(N^2)
 - Space: O(N)
+
+## BFS
+```cpp
+class Solution {
+public:
+
+
+    int jump(vector<int>& nums) {
+        int level_end = 0, cur_farthest = 0;
+        int levels = 0;
+
+        if (nums.size()==1){
+            return 0;
+        }
+
+        for(int i=0; i<nums.size()-1; i++){
+            cur_farthest = max(cur_farthest, i+nums[i]);
+            if (cur_farthest >= nums.size()-1){
+                levels++;
+                break;
+            }
+            // Visited all the items on the current level, make the queue size for the next level
+            if (i==level_end){
+                level_end = cur_farthest;
+                levels++;
+            }
+        }
+        return levels;
+    }
+};
+```
+#### Complexity:
+- Time: O(N)
+- Space: O(1)
