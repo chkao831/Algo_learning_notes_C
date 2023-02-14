@@ -263,3 +263,55 @@ float = float / float
 #include <cmath>
 cout << ceil(15.08); // output = 16
 ```
+
+## Read in file/stream
+```cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+
+int main() {
+    string line;
+
+    ifstream myFile;
+    myFile.open("test.txt");
+
+    // istream& getline (istream& is, string& str, char delim);
+    while (getline(myFile, line)) {
+        cout << line << endl;
+    }
+    
+    // string name;
+    // int score;
+    // while (myFile >> name >> score) {
+    //    cout << name << " " << score << "\n";
+    //    names.push_back(name);
+    //    scores.push_back(score);
+    //}
+    
+    myFile.close();
+    return 0;
+}
+```
+```cpp
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int main() {
+    string str = "1,2,3,4,5,6";
+    vector<int> vect;
+
+    stringstream ss(str);
+
+    for (int i; ss >> i;) {
+        vect.push_back(i);    
+        if (ss.peek() == ',')
+            ss.ignore();
+    }
+}
+```
